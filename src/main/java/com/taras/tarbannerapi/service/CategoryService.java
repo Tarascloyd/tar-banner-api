@@ -8,11 +8,11 @@ public interface CategoryService {
 
 	public List<Category> findAll();
 	
-	public Category findById(int theId);
+	public Category findById(Long theId);
 	
-	public void save(Category theCategory);
+	public Category save(Category theCategory);
 	
-	public void deleteById(int theId);
+	public void deleteById(Long theId);
 	
 	public List<Category> searchBy(String theName);
 }

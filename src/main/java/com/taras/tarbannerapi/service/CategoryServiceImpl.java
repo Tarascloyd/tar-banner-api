@@ -25,29 +25,20 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public Category findById(int theId) {
-		Optional<Category> result = categoryRepository.findById(theId);
-		
-		Category theCategory = null;
-		
-		if (result.isPresent()) {
-			theCategory = result.get();
-		}
-		else {
-			throw new RuntimeException("Did not find category id - " + theId);
-		}
-		
-		return theCategory;
+	public Category findById(Long theId) {
+
+		return categoryRepository.findById(theId)
+				.orElseThrow(() -> new RuntimeException("Did not find category id - " + theId));
 	}
 
 	@Override
-	public void save(Category theCategory) {
-		categoryRepository.save(theCategory);
+	public Category save(Category theCategory) {
+		return categoryRepository.save(theCategory);
 
 	}
 
 	@Override
-	public void deleteById(int theId) {
+	public void deleteById(Long theId) {
 		categoryRepository.deleteById(theId);
 
 	}

@@ -1,28 +1,31 @@
 package com.taras.tarbannerapi.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.Where;
+
+import javax.persistence.*;
 
 @Entity
+@Where(clause = "deleted = false")
 public class Category {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
-	
+	private Long id;
+
+	@Column(name="name")
 	private String name;
 
+	@Column(name="req_name")
 	private String reqName;
-	
+
+	@Column(name="deleted")
 	private boolean deleted;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

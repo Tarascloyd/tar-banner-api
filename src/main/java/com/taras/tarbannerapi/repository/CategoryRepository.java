@@ -9,7 +9,7 @@ import com.taras.tarbannerapi.entity.Category;
 
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, Integer> {
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 	
 	List<Category> findByNameContainsAllIgnoreCase(String theName);
 }
