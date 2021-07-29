@@ -1,15 +1,15 @@
 package com.taras.tarbannerapi.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.taras.tarbannerapi.entity.Category;
 import com.taras.tarbannerapi.service.CategoryService;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/categories")
+@RequestMapping("api/categories")
 public class CategoryConroller {
 
 	private CategoryService categoryService;
@@ -30,6 +30,42 @@ public class CategoryConroller {
 	public @ResponseBody Iterable<Category> getAllCategories() {
 	    
 		return categoryService.findAll();
+	}
+
+	@GetMapping("/search")
+	public @ResponseBody Iterable<Category> getCategoriesSearchByName(
+			@RequestParam("name") String name) {
+		if (name.trim().isEmpty()) {
+			return categoryService.findAll();
+		}
+		return categoryService.searchBy(name);
+	}
+
+	@GetMapping("/{id}")
+	public Category getCategoryById(@PathVariable("id") Long id) {
+
+		return categoryService.findById(id);
+	}
+
+	@PostMapping({"/", ""})
+	@ResponseStatus(HttpStatus.CREATED)
+	public Category postCategory(@RequestBody final Category category) {
+
+		return categoryService.save(category);
+	}
+
+	@PutMapping("/{id}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Category updateCategory(@PathVariable("id") Long id,
+								 @RequestBody final Category category) {
+
+		return categoryService.save(category);
+	}
+
+	@DeleteMapping("/{id}")
+	public void deleteCategoryById(@PathVariable("id") Long id) {
+
+		categoryService.deleteById(id);
 	}
 
 }
