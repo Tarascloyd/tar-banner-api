@@ -3,6 +3,7 @@ package com.taras.tarbannerapi.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.taras.tarbannerapi.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.taras.tarbannerapi.entity.Category;
@@ -28,7 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
 	public Category findById(Long theId) {
 
 		return categoryRepository.findById(theId)
-				.orElseThrow(() -> new RuntimeException("Did not find category id - " + theId));
+				.orElseThrow(ResourceNotFoundException::new);
 	}
 
 	@Override

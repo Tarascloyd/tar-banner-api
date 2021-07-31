@@ -1,6 +1,7 @@
 package com.taras.tarbannerapi.service;
 
 import com.taras.tarbannerapi.entity.Banner;
+import com.taras.tarbannerapi.exceptions.ResourceNotFoundException;
 import com.taras.tarbannerapi.repository.BannerRepository;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class BannerServiceImpl implements BannerService {
     @Override
     public Banner findById(Long theId) {
         return bannerRepository.findById(theId)
-                .orElseThrow(() -> new RuntimeException("Did not find banner id - " + theId));
+                .orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
