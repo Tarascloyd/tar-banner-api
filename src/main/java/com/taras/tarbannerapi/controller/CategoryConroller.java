@@ -17,9 +17,11 @@ public class CategoryConroller {
 	public CategoryConroller(CategoryService categoryService) {
 		this.categoryService = categoryService;
 		Category category1 = new Category();
-	    category1.setName("music");
+	    category1.setName("Music");
+		category1.setReqName("music");
 	    Category category2 = new Category();
-	    category2.setName("movies");
+	    category2.setName("Movies");
+		category2.setReqName("movies");
 	    this.categoryService.save(category1);
 	    this.categoryService.save(category2);
 	}

@@ -6,8 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
 @Entity
@@ -18,11 +17,16 @@ public class Banner {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    @Column(name="name")
+    @Column(name="name", unique = true)
     @NotBlank(message = "Name is mandatory")
+    @Size(min = 2, max = 255, message
+            = "Name must be between 2 and 255 characters")
     private String name;
 
     @Column(name="price")
+    @DecimalMin(value = "0.0", inclusive = false, message = "Price cannot be 0")
+    @Digits(integer=8, fraction=2, message = "No more than 8 digits in integral part of the price, no more than 2 digits in fractional")
+    @NotNull(message = "Price cannot be null")
     private BigDecimal price;
 
     @ManyToOne()

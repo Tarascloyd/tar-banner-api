@@ -4,6 +4,7 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Where(clause = "deleted = false")
@@ -13,12 +14,16 @@ public class Category {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
-	@Column(name="name")
+	@Column(name="name", unique = true)
 	@NotBlank(message = "Name is mandatory")
+	@Size(min = 2, max = 255, message
+			= "Name must be between 2 and 255 characters")
 	private String name;
 
-	@Column(name="req_name")
+	@Column(name="req_name", unique = true)
 	@NotBlank(message = "Request ID is mandatory")
+	@Size(min = 2, max = 255, message
+			= "Request ID must be between 2 and 255 characters")
 	private String reqName;
 
 	@Column(name="deleted")
