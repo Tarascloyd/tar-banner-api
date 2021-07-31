@@ -3,6 +3,7 @@ package com.taras.tarbannerapi.entity;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Where(clause = "deleted = false")
@@ -13,9 +14,11 @@ public class Category {
 	private Long id;
 
 	@Column(name="name")
+	@NotBlank(message = "Name is mandatory")
 	private String name;
 
 	@Column(name="req_name")
+	@NotBlank(message = "Request ID is mandatory")
 	private String reqName;
 
 	@Column(name="deleted")

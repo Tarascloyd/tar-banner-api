@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
@@ -17,6 +19,7 @@ public class Banner {
     private Long id;
 
     @Column(name="name")
+    @NotBlank(message = "Name is mandatory")
     private String name;
 
     @Column(name="price")
@@ -28,7 +31,9 @@ public class Banner {
     @JsonIdentityReference(alwaysAsId = true)
     private Category category;
 
+
     @Column(name="text")
+    @NotBlank(message = "Text is mandatory")
     private String text;
 
     @Column(name="deleted")
