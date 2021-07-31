@@ -1,9 +1,7 @@
 package com.taras.tarbannerapi.controller;
 
 import com.taras.tarbannerapi.entity.Banner;
-import com.taras.tarbannerapi.entity.Category;
 import com.taras.tarbannerapi.service.BannerService;
-import com.taras.tarbannerapi.service.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

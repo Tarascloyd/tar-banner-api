@@ -2,9 +2,11 @@ package com.taras.tarbannerapi.service;
 
 import com.taras.tarbannerapi.entity.Banner;
 import com.taras.tarbannerapi.repository.BannerRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class BannerServiceImpl implements BannerService {
 
     private BannerRepository bannerRepository;
